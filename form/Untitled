@@ -1,0 +1,56 @@
+data Status = Bom | Quebrado
+    deriving (Show, Enum)
+derivePersistField "Status"
+
+instance PersistFieldSql Status where
+  sqlType _ = SqlString
+
+postCadastroR :: Handler Html
+postCadastroR = do
+    ((result, _), _) <- runFormPost cadastroForm
+    case result of
+        FormSuccess (p, u, e, c) -> do
+            loginId    <- runDB $ insert p
+            usuarioId  <- runDB $ insert $ Usuario
+                (usuarioNome          u)
+                (usuarioRg            u)
+                (usuarioDtEmissaoRg   u)
+                (usuarioCpf           u)
+                (usuarioNaturalidade  u)
+                (usuarioTelResid      u)
+                (usuarioTelComercial  u)
+                (usuarioCel           u)
+                (usuarioTelEmergencia u)
+                (usuarioPassaporte    u)
+                loginId
+            cidadeId   <- runDB $ insert c
+            enderecoId <- runDB $ insert $ Endereco
+                (enderecoEndereco     e)
+                (enderecoBairro       e)
+                (enderecoCep          e)
+                cidadeId
+                usuarioId
+            redirect CadastroR
+        _ -> do
+            setMessage [shamlet|Ocorreu um erro.|]
+            redirect LoginR
+
+getLoginR :: Handler Html
+getLoginR = do
+    (widgetLogin, enctypeLogin) <- generateFormPost loginForm
+    msg <- getMessage
+    deleteSession "_ID"
+    let resource = [whamlet|
+        <form role="form" method="POST" action=@{LoginR} enctype=#{enctypeLogin}>
+            ^{widgetLogin}
+            <button>Entrar
+            <a href=@{CadastroR}>Cadastre-se
+    |]
+    defaultLayout $
+        toWidget $(luciusFile "templates/traveldream.lucius") >>
+        $(whamletFile "templates/login.hamlet")
+
+type Form a = Html -> MForm Handler (FormResult a, Widget)
+
+instance RenderMessage Pagina FormMessage where
+    renderMessage _ _ = defaultFormMessage

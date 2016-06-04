@@ -1,0 +1,47 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="col-md-2">
+                <a class="navbar-brand" href="https://metalurgicos-victorxmartins.c9.io/index.php/pagina/">
+                    <img alt="Logo do sindicato" src="https://metalurgicos-victorxmartins.c9.io/static/img/logo-metal.png" class="img-responsive">
+            <div class="navbar-header col-md-10">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" title="Menu">
+                    <span class="sr-only">Menu</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quem somos <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="https://metalurgicos-victorxmartins.c9.io/index.php/quemsomos/diretoria">Diretoria</a></li>
+                            <li><a href="https://metalurgicos-victorxmartins.c9.io/index.php/quemsomos/historia">Nossa história</a></li>
+                            <li><a href="https://metalurgicos-victorxmartins.c9.io/index.php/quemsomos/sedes">Sedes</a></li>
+                            <li><a href="https://metalurgicos-victorxmartins.c9.io/index.php/quemsomos/links">Links</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Serviços <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="https://metalurgicos-victorxmartins.c9.io/index.php/servicos/cursos">Cursos</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="https://metalurgicos-victorxmartins.c9.io/index.php/servicos/juridico">Jurídico</a></li>
+                            <li><a href="https://metalurgicos-victorxmartins.c9.io/index.php/servicos/ambulatorio">Ambulatório</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="https://metalurgicos-victorxmartins.c9.io/index.php/servicos/convenios">Convênios</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="https://metalurgicos-victorxmartins.c9.io/index.php/servicos/atualizar">Atualizar cadastro</a></li>                    
+                            <li><a href="https://metalurgicos-victorxmartins.c9.io/index.php/servicos/homologacao">Homologação</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Comunicação <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="https://metalurgicos-victorxmartins.c9.io/index.php/comunicacao/noticias">Notícias</a></li>
+                            <li><a href="https://metalurgicos-victorxmartins.c9.io/index.php/comunicacao/boletins">Boletins</a></li>
+                            <li><a href="https://metalurgicos-victorxmartins.c9.io/index.php/comunicacao/eventos">Eventos</a></li>
+                            <li><a href="https://metalurgicos-victorxmartins.c9.io/index.php/comunicacao/artigos">Artigos</a></li>
+                            <li><a href="https://metalurgicos-victorxmartins.c9.io/index.php/comunicacao/videos">Vídeos</a></li>
+                    <li><a href="https://metalurgicos-victorxmartins.c9.io/index.php/pagina/sindicalizese">Sindicalize-se</a></li>
+                    <li><a href="https://metalurgicos-victorxmartins.c9.io/index.php/pagina/contato">Contatos</a></li>
+                    <li>
+                        <form class="navbar-form navbar-right" role="search" method="post" action="https://metalurgicos-victorxmartins.c9.io/index.php/comunicacao/busca">
+                            <input type="text" class="form-control" placeholder="Procuro por..." name="busca" id="busca">
+                            <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default">Buscar</button>

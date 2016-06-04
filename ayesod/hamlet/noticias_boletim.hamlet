@@ -1,0 +1,65 @@
+<!--BOLETIM + NOTÍCIAS-->    
+<div class="container">
+    <h3 class="red">NOTÍCIAS</h3>
+    <div class="row">
+        <div class="col-md-3">
+            <a href="/index.php/comunicacao/noticia/6">
+                <h2>
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    Ação de cumprimento
+                <p>O Juiz da 5ª Vara do Trabalho de Cubatão ( proc. nº 1000872-08.2015. 5.02. 0255) deferiu a reinte...</p>
+        <div class="col-md-3">
+            <a href="/index.php/comunicacao/noticia/9">
+                <h2>
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    E não adianta vir com repressão, gancho para os diretores do Sindicato. Nada disso vai parar nossa mobilização
+                <p>A revolta dentro da área aumentou, os trabalhadores sentem cada vez mais na pele a violência da Us...</p>
+        <div class="col-md-3">
+            <a href="/index.php/comunicacao/noticia/11">
+                <h2>
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    Trabalhadores têm direito à informação
+                <p>A Convenção Coletiva de Trabalho (CCT) em sua cláusula 94ª, determina que as empresas deverão c...</p>
+        <div class="col-md-3">
+            <div class="well text-center">
+                <h3 class="red">BOLETIM</h3>
+                <p>
+                    <a href="http://metalurgicosbs.org.br/imagens/upload/documento3835.pdf" target="_blank">
+                        <img src="http://metalurgicosbs.org.br/imagens/upload/imagem3836.jpg">
+                <p>
+                    <a href="http://metalurgicosbs.org.br/imagens/upload/documento3835.pdf" target="_blank">
+                        O Metalúrgico #415<br>
+                        06 de maio de 2016
+                <div class="text-center"><a href="https://metalurgicos-victorxmartins.c9.io/index.php/comunicacao/boletins" class="btn btn-danger">+ boletins</a></div>
+    <div class="row">
+        <div class="col-md-3">
+            <a href="/index.php/comunicacao/noticia/5">
+                <h2>
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    Já estamos encaminhando as denúncias sobre a intervenção da Usiminas e do Estado na livre organização dos trabalhadores
+                <p>O Sindicato, junto com a INTERSINDICAL, está encaminhando as devidas denúncias que comprovam a int...</p>
+        <div class="col-md-3">
+            <a href="/index.php/comunicacao/noticia/8">
+                <h2>
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    Em reunião com o MP denunciamos a repressão contra a nossa luta
+                <p>Na última terça-feira, 17, o Sindicato participou da reunião que aconteceu no Ministério Públic...</p>
+        <div class="col-md-3">
+            <a href="/index.php/comunicacao/noticia/7">
+                <h2>
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    DOAÇÃO DE SANGUE
+                <p>Eduardo dos Santos Costa necessita da doação de sangue de qualquer tipo. Quem puder ajudar, favor ...</p>
+        <div class="col-md-3">
+            <a href="/index.php/comunicacao/noticia/10">
+                <h2>
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    Acabou a desculpa
+                <p>Algumas empresas ainda não concederam o reajuste salarial (9,42%), já aprovado em assembleia reali...</p>
+        <div class="col-md-3">
+            <a href="/index.php/comunicacao/noticia/12">
+                <h2>
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    Perícias vão definir direito ao Adicional de Insalubridade
+                <p>O Sindicato entrou com várias ações reivindicando o direito ao Adicional de Insalubridade em dive...</p>
+    <div class="text-center"><a href="https://metalurgicos-victorxmartins.c9.io/index.php/comunicacao/noticias" class="btn btn-danger">+ notícias</a></div>

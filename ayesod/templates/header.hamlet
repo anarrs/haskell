@@ -1,0 +1,17 @@
+<div id="wrapper">
+    <header id="header">
+        <!-- Container -->
+        <div class="container">
+            <!-- Logo / Mobile Menu -->
+            <div class="three columns">
+                <div id="logo">
+                    <h1><a href=@{HomeR}><img src=@{StaticR images_logo_png} alt="logo" />
+        <!-- Navigation ================================================= -->
+        <div class="thirteen columns navigation">
+            <nav id="navigation" class="menu nav-collapse">
+                <ul>
+                    <li><a href=@{HomeR}>Home</a></li>
+                    <li><a href="pesquisar.html">Pesquisar</a></li>
+                    <li><a href="#">Cadastro</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="cadastro.html" id="azul">Login/Cadastro</a></li>
