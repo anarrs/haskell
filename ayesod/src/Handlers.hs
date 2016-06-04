@@ -31,6 +31,12 @@ widgetCss = do
     addStylesheet $ StaticR css_carousel_customizado_css
     addStylesheet $ StaticR css_sticky_footer_navbar_css
 
+widgetScript :: Widget
+widgetScript = do
+    addScriptRemote "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+    addScript $ StaticR js_bootstrap_min_js
+    addScript $ StaticR js_validator_min_js
+
 formDepto :: Form Departamento
 formDepto = renderDivs $ Departamento <$>
             areq textField "Nome" Nothing <*>
@@ -47,6 +53,13 @@ formPessoa = renderDivs $ Pessoa <$>
              areq doubleField "Salario" Nothing <*>
              areq (selectField dptos) "Depto" Nothing
 
+formCadastroNoticia :: Form Noticia
+formCadastroNoticia = renderDivs $ Noticia <$>
+                      areq textField "Titulo" Nothing <*>
+                      areq textField "Corpo" Nothing <*>
+                      areq textField "Autor" Nothing <*>
+                      areq intField "Tipo" Nothing
+
 dptos = do
        entidades <- runDB $ selectList [] [Asc DepartamentoNome] 
        optionsPairs $ fmap (\ent -> (departamentoSigla $ entityVal ent, entityKey ent)) entidades
@@ -54,9 +67,44 @@ dptos = do
 getHomeR :: Handler Html
 getHomeR = do
            defaultLayout $ widgetCss >> 
-           $(whamletFile "templates/menu.hamlet") >> 
-           $(whamletFile "hamlet/destaque.hamlet") >> 
-           $(whamletFile "hamlet/noticias_boletim.hamlet")
+               $(whamletFile "templates/menu.hamlet") >> 
+               $(whamletFile "hamlet/destaque.hamlet") >> 
+               $(whamletFile "hamlet/noticias_boletim.hamlet") >> 
+               $(whamletFile "templates/footer.hamlet") >> 
+               widgetScript
+
+
+getNoticiasR :: Handler Html
+getNoticiasR = do
+               listaN <- runDB $ selectList [] [Desc NoticiaId]
+               defaultLayout $ widgetCss >> 
+                   $(whamletFile "templates/menu.hamlet") >> 
+                   $(whamletFile "hamlet/noticias.hamlet") >> 
+                   $(whamletFile "templates/footer.hamlet") >> 
+                   widgetScript
+
+getListarR :: Handler Html
+getListarR = do
+             listaP <- runDB $ selectList [] [Asc PessoaNome]
+             defaultLayout $ [whamlet|
+                 <h1> Pessoas cadastradas:
+                 $forall Entity pid pessoa <- listaP
+                     <a href=@{PessoaR pid}> #{pessoaNome pessoa} 
+                     <form method=post action=@{PessoaR pid}> 
+                         <input type="submit" value="Deletar">aaaa<br>
+             |] >> toWidget [lucius|
+                form  { display:inline; }
+                input { background-color: #ecc; border:0;}
+             |]
+
+getNoticiaR :: NoticiaId -> Handler Html
+getNoticiaR nid = do
+             noticia <- runDB $ get404 nid 
+             defaultLayout $ widgetCss >> 
+                 $(whamletFile "templates/menu.hamlet") >> 
+                 $(whamletFile "hamlet/noticia.hamlet") >> 
+                 $(whamletFile "templates/footer.hamlet") >> 
+                 widgetScript
 
 {-
 getHomeR = do
@@ -84,6 +132,14 @@ getCadastroR = do
                  addStylesheet $ StaticR teste_css
                  widgetForm CadastroR enctype widget "Pessoas"
 
+getCadastroNoticiaR :: Handler Html
+getCadastroNoticiaR = do
+             (widget, enctype) <- generateFormPost formCadastroNoticia
+             defaultLayout $ widgetCss >> 
+                 $(whamletFile "templates/menu.hamlet") >> 
+                 $(whamletFile "templates/footer.hamlet") >> 
+                 widgetForm CadastroNoticiaR enctype widget "Noticia"
+                 
 getPessoaR :: PessoaId -> Handler Html
 getPessoaR pid = do
              pessoa <- runDB $ get404 pid 
@@ -93,20 +149,6 @@ getPessoaR pid = do
                  <p> Salario: #{pessoaSalario pessoa}
                  <p> Idade: #{pessoaIdade pessoa}
                  <p> Departamento: #{departamentoNome dpto}
-             |]
-
-getListarR :: Handler Html
-getListarR = do
-             listaP <- runDB $ selectList [] [Asc PessoaNome]
-             defaultLayout $ [whamlet|
-                 <h1> Pessoas cadastradas:
-                 $forall Entity pid pessoa <- listaP
-                     <a href=@{PessoaR pid}> #{pessoaNome pessoa} 
-                     <form method=post action=@{PessoaR pid}> 
-                         <input type="submit" value="Deletar">aaaa<br>
-             |] >> toWidget [lucius|
-                form  { display:inline; }
-                input { background-color: #ecc; border:0;}
              |]
 
 postCadastroR :: Handler Html
@@ -119,6 +161,17 @@ postCadastroR = do
                            <h1> #{pessoaNome pessoa} Inseridx com sucesso. 
                        |]
                     _ -> redirect CadastroR
+
+postCadastroNoticiaR :: Handler Html
+postCadastroNoticiaR = do
+                ((result, _), _) <- runFormPost formCadastroNoticia
+                case result of
+                    FormSuccess noticia -> do
+                       runDB $ insert noticia 
+                       defaultLayout [whamlet| 
+                           <h1>Noticia inserida com sucesso. 
+                       |]
+                    _ -> redirect CadastroNoticiaR
 
 getDeptoR :: Handler Html
 getDeptoR = do

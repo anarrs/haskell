@@ -5,21 +5,21 @@
         <li data-target="#myCarousel" data-slide-to="2"></li>
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img  src="https://metalurgicos-victorxmartins.c9.io/static/img/refeitorio.jpg" alt="img/refeitorio.jpg">
+            <img  src=@{StaticR images_refeitorio_jpg} >
             <div class="container">
                 <div class="carousel-caption">
                     <h1>Usiminas teve a cara de pau de dizer que não tem nada a ver com a ação da polícia</h1>
                     <p>A direção da Usiminas além de seguir no calote nos salários, anunciar que pretende demitir milha...</p>
                     <p><a class="btn btn-lg btn-primary" href="https://metalurgicos-victorxmartins.c9.io/index.php/comunicacao/noticia/1" role="button">Leia +</a></p>
         <div class="item ">
-            <img class="second-slide" src="https://metalurgicos-victorxmartins.c9.io/static/img/DSC_0872.jpg" alt="img/DSC_0872.jpg">
+            <img class="second-slide" src=@{StaticR images_DSC_0872_jpg}>
             <div class="container">
                 <div class="carousel-caption">
                     <h1>Nossa luta é do conjunto dos trabalhadores</h1>
                     <p>No dia de nossa mobilização aqui em Cubatão, os metalúrgicos de Ipatinga também se colocaram em...</p>
                     <p><a class="btn btn-lg btn-primary" href="https://metalurgicos-victorxmartins.c9.io/index.php/comunicacao/noticia/2" role="button">Leia +</a></p>
         <div class="item ">
-            <img class="third-slide" src="https://metalurgicos-victorxmartins.c9.io/static/img/DSC_0823.jpg" alt="img/DSC_0823.jpg">
+            <img class="third-slide" src=@{StaticR images_DSC_0823_jpg}>
             <div class="container">
                 <div class="carousel-caption">
                     <h1>A luta se espalhou pela cidade de Cubatão e pelo País afora</h1>

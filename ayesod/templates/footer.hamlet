@@ -1,0 +1,9 @@
+<div class="container"></div>
+<div class="container"></div>
+<footer class="footer2">
+    <div class="container">
+        <div class="col-md-2">
+            <img alt="Logo do sindicato" src=@{StaticR images_logo_metal_png}>
+        <div>
+            1933 - 2016 - <b>Sindicato dos Siderúrgicos e Metalúrgicos da Baixada Santista</b><br>
+            <a href="mailto:metalurgicosbs@metalurgicosbs.org.br">metalurgicosbs@metalurgicosbs.org.br</a> - 3226-3575<br>Sede: R. Cidade de Pinhal, 91, Cubatão/SP - Subsede: Av. Ana Costa, 55, Santos/SP, CEP 11060-001

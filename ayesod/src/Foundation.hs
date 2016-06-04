@@ -24,6 +24,14 @@ Pessoa
    salario Double
    deptoid DepartamentoId
    deriving Show
+   
+Noticia
+   titulo Text sqltype=varchar(200)
+   corpo Text
+   autor Text sqltype=varchar(100)
+   cd_tipo_materia Int
+   deriving Show
+
 |]
 
 staticFiles "static"

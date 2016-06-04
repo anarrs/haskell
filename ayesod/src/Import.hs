@@ -14,10 +14,12 @@ import Yesod
 |]-}
 pRoutes = [parseRoutes|
    / HomeR GET
-   --/hello HelloR GET
+   /noticias NoticiasR GET
+   /noticia/#NoticiaId NoticiaR GET
    /listar ListarR GET 
    /pessoa/#PessoaId PessoaR GET POST
    /depto DeptoR GET POST
    /cadastro CadastroR GET POST
+   /cadastronoticia CadastroNoticiaR GET POST
    /static StaticR Static getStatic
 |]

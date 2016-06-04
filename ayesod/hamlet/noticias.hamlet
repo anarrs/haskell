@@ -1,0 +1,9 @@
+<div class="container">
+    <h3 class="red">NOTÍCIAS</h3>
+    $forall Entity nid noticia <- listaN
+        <div class="col-md-3">
+            <a href=@{NoticiaR nid}">
+                <h2>
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    #{noticiaTitulo noticia}
+                <p>#{noticiaAutor noticia}</p>
