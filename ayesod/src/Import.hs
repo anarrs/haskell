@@ -19,6 +19,7 @@ pRoutes = [parseRoutes|
    /noticias NoticiasR GET
    /noticia/#NoticiaId NoticiaR GET
    /cadastronoticia CadastroNoticiaR GET POST
+   /cadastroimagem CadastroImagemR GET POST
    /cadastrousuario CadastroUsuarioR GET POST
    /static StaticR Static getStatic
 |]

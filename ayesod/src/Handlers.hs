@@ -34,6 +34,17 @@ formCadastroNoticia = renderDivs $ Noticia <$>
                       areq textField "Autor" Nothing <*>
                       areq intField "Tipo" Nothing
 
+formCadastroImagem :: Form Imagem
+formCadastroImagem = renderDivs $ Imagem <$>
+                      areq textField "Url" Nothing <*>
+                      areq textField "Legenda" Nothing <*>
+                      areq textField "Autor" Nothing <*>
+                      areq (selectField nots) "Noticia" Nothing
+
+nots = do
+       entidades <- runDB $ selectList [] [Asc NoticiaTitulo] 
+       optionsPairs $ fmap (\ent -> (noticiaTitulo $ entityVal ent, entityKey ent)) entidades
+
 formUsuario :: Form Usuario
 formUsuario = renderDivs $ Usuario <$>
              areq textField "Nome" Nothing <*>
@@ -62,7 +73,7 @@ postLoginR = do
             case usuario of
                 Just (Entity uid usr) -> do
                     setSession "_ID" (usuarioNome usr)
-                    redirect HomeR
+                    redirect CadastroNoticiaR
                 Nothing -> do
                     setMessage $ [shamlet| <p class="text-center"> Usuário inválido |]
                     redirect LoginR
@@ -127,6 +138,26 @@ postCadastroNoticiaR = do
                     _ -> redirect CadastroNoticiaR
 
 
+
+getCadastroImagemR :: Handler Html
+getCadastroImagemR = do
+             (widget, enctype) <- generateFormPost formCadastroImagem
+             defaultLayout $ widgetCss >> 
+                 $(whamletFile "templates/menulogado.hamlet") >> 
+                 $(whamletFile "templates/footer.hamlet") >> 
+                 widgetForm CadastroImagemR enctype widget "Imagem"
+                 
+
+postCadastroImagemR :: Handler Html
+postCadastroImagemR = do
+                ((result, _), _) <- runFormPost formCadastroImagem
+                case result of
+                    FormSuccess imagem -> do
+                       runDB $ insert imagem 
+                       defaultLayout [whamlet| 
+                           <h1>Imagem inserida com sucesso. 
+                       |]
+                    _ -> redirect CadastroImagemR
 
 getCadastroUsuarioR :: Handler Html
 getCadastroUsuarioR = do

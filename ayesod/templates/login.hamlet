@@ -3,3 +3,7 @@
     <form method=post action=@{x} enctype=#{enctype}>
         ^{widget}
         <input type="submit" value="Entrar">
+    <p>
+        Garcia, entre com<br>
+        Login: <b>garcia</b><br>
+        Senha: <b>garcia</b>

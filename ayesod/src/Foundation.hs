@@ -25,6 +25,13 @@ Noticia
    autor Text sqltype=varchar(100)
    cd_tipo_materia Int
    deriving Show
+    
+Imagem
+   url Text sqltype=varchar(200)
+   legenda Text
+   autor Text sqltype=varchar(100)
+   idnoticia NoticiaId
+   deriving Show
 
 |]
 
@@ -46,6 +53,7 @@ instance Yesod Sitio where
     isAuthorized LoginR _ = return Authorized
     isAuthorized CadastroUsuarioR _ = isUser
     isAuthorized CadastroNoticiaR _ = isUser
+    isAuthorized CadastroImagemR _ = isUser
     isAuthorized _ _ = return Authorized
 
 isUser = do

@@ -12,5 +12,6 @@
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href=@{CadastroNoticiaR}>Cadastro de Notícia</a></li>
+                    <li><a href=@{CadastroImagemR}>Cadastro de Imagem</a></li>
                     <li><a href=@{CadastroUsuarioR}>Cadastro de Usuário</a></li>
                     <li><a href=@{LogoutR}>Logout</a></li>
