@@ -2,5 +2,9 @@
     <h1 class="red">#{noticiaTitulo noticia}</h1>
     <div>
         <p>Autor: #{noticiaAutor noticia}</p>
+        $forall Entity imagemid imagem <- listaI
+            <p>
+                <img src=#{imagemUrl imagem} alt=#{imagemLegenda imagem}><br>
+                <i>#{imagemLegenda imagem} (#{imagemAutor imagem})</i>
         <p>#{noticiaCorpo noticia}</p>
     <div class="text-center"><a href="/index.php/comunicacao/noticias" class="btn btn-danger">+ notícias</a></div>

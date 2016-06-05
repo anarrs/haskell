@@ -102,6 +102,7 @@ getNoticiasR = do
 getNoticiaR :: NoticiaId -> Handler Html
 getNoticiaR nid = do
              noticia <- runDB $ get404 nid 
+             listaI <- runDB $ selectList [ImagemIdnoticia ==. nid ] []
              defaultLayout $ widgetCss >> 
                  $(whamletFile "templates/menu.hamlet") >> 
                  $(whamletFile "hamlet/noticia.hamlet") >> 
