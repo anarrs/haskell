@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-06-05 19:46:21.175795 UTC
+2016-06-05 20:56:02.829449 UTC
 
 interface main@main:Main 7103
-  interface hash: 3c6c1ce7491bf6bd82f0686eec0b092d
-  ABI hash: 146b95173aab8423619f316efcd6cff5
-  export-list hash: 4b9dc58b71f2f72d24c296e749834f5d
+  interface hash: 414f9ec962173a19bba2eeb46b490694
+  ABI hash: b9eb2f175c28bf32a762f3f9e9bd675f
+  export-list hash: b95cdac21257989e642b21ce27a9ba20
   orphan hash: 30255c9284799e76651a06a4b6cb6ed1
   flag hash: 478ee77c77866d4fc0cbb019f4c98d2d
   sig of: Nothing
@@ -218,13 +218,13 @@ family instance modules: attoparsec-0.13.0.2@attop_41FU8li3hiTHrQHazQNzh3:Data.A
 import  -/  base-4.8.2.0:Control.Applicative a8ebf5ad4932b411ad7725da68be9801
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  ghc-prim-0.4.0.0:GHC.Types 6b27fb3fdbd0e3f0925a4496c66513bb
-import  -/  Foundation 3fd9c1cd4f8c24f46237be5bd6b54319
-  exports: 6fd0148abe85dd421eaf2cf230bc17db
-  Sitio 797163ef3dea416cc33031101569bc55
-  migrateAll 2440c0b42239bcd3d854e0d380a41aa3
-import  -/  Handlers 45593d15b43ccedbb5efaed7a6e534c8
-  exports: abd40b7e73c2c7b6dc9427c9d36cf7fc
-import  -/  Import ddd79cfe439fd808aa81ac2ae403ae6a
+import  -/  Foundation 01b05a6a65c203a9b4292b9317b34b72
+  exports: ef1a4390eec295509ba0d8ca61f19b88
+  Sitio 2c9a162b76375c3aa64958cc8b2a5e44
+  migrateAll 285905e70653884db89d79e4bacaf8e9
+import  -/  Handlers f245e3093daa331f30752363307044d6
+  exports: 036c77d2fdb0c6ad87ce85353909c31d
+import  -/  Import d97fee072ada9cdad4fffcc46c64c4e1
   exports: 3f81b358abbdd755233af520aa5259f2
 import  -/  monad-logger-0.3.18@monad_4zFmsKEb02q80NkYIgzdSA:Control.Monad.Logger 182fd28eab575faa0f8bc2038857c61b
 import  -/  persistent-2.2.4.1@persi_36FCcNA9a3h9UOROG7VC2h:Database.Persist.Sql.Migration 9f47cada8df0c2037851f568b798b322
@@ -611,7 +611,7 @@ fc137b0534540927ffa225ff4580d46a
   connStr1 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
                    "dbname=d1c1ae91hmds69 host=ec2-23-21-165-183.compute-1.amazonaws.com user=cxdimwokdlztok password=WqgSJY8rsR7Q7nTfX1NzbV2K32 port=5432"#) -}
-45e1de7703073e15bbd83b2bc0a8adbb
+2cee75862a77089ccc5f2855364c530c
   main :: GHC.Types.IO ()
   {- Unfolding: ((Main.main7
                     Main.main6
@@ -636,7 +636,7 @@ fc137b0534540927ffa225ff4580d46a
                     ->_R <Control.Monad.Logger.LogLevel>_R
                     ->_R <System.Log.FastLogger.LogStr.LogStr>_R
                     ->_R Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
-e81a037f40ab591273114b3f98ee4af3
+a9cd9f73792b38a6d92b38b29556dcb3
   main1 ::
     Database.Persist.Sql.Types.ConnectionPool
     -> (Language.Haskell.TH.Syntax.Loc
@@ -721,7 +721,7 @@ e81a037f40ab591273114b3f98ee4af3
 5eb073f17ac54838655b33d45e43ab34
   main3 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "static"#) -}
-0984719b670bf47d64a1dc0b0d9ca0ee
+5f71c14500c5046abaa8aed2e22dd6e5
   main4 ::
     Database.Persist.Sql.Types.SqlBackend
     -> Control.Monad.Logger.NoLoggingT
@@ -736,7 +736,7 @@ e81a037f40ab591273114b3f98ee4af3
                              <Control.Monad.Logger.NoLoggingT
                                 (Control.Monad.Trans.Resource.Internal.ResourceT GHC.Types.IO)>_R
                              <()>_N))) -}
-c460d36945fb90561ff53b6789487d12
+3776847a1bc66f8b2829fec895590924
   main5 ::
     Database.Persist.Sql.Types.SqlBackend
     -> Control.Monad.Logger.NoLoggingT
@@ -837,7 +837,7 @@ fea89dbc8907687589f068057994fecb
                            0 of ww2 { DEFAULT ->
                     GHC.Types.I# ww2 })
                    Main.connStr1) -}
-3b2a66105266f2f74a006af26965b93a
+cb06b81b56494b7f0f76485b739dbcfb
   main9 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)

@@ -17,9 +17,14 @@ pRoutes = [parseRoutes|
    /login LoginR GET POST
    /logout LogoutR GET
    /noticias NoticiasR GET
-   /noticia/#NoticiaId NoticiaR GET
+   /noticia/#NoticiaId NoticiaR GET POST
+   /imagem/#ImagemId ImagemR POST
+   /usuario/#UsuarioId UsuarioR POST
    /cadastronoticia CadastroNoticiaR GET POST
    /cadastroimagem CadastroImagemR GET POST
    /cadastrousuario CadastroUsuarioR GET POST
    /static StaticR Static getStatic
+   /listanoticias ListaNoticiasR GET 
+   /listaimagens ListaImagensR GET 
+   /listausuarios ListaUsuariosR GET 
 |]

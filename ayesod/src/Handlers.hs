@@ -62,6 +62,7 @@ getLoginR = do
     defaultLayout $ widgetCss >> 
      $(whamletFile "templates/menu.hamlet") >> 
      $(whamletFile "templates/footer.hamlet") >> 
+     widgetScript >> 
      widgetLogin LoginR enctype widget "Usuarios"
 
 postLoginR :: Handler Html
@@ -99,17 +100,6 @@ getNoticiasR = do
                    $(whamletFile "templates/footer.hamlet") >> 
                    widgetScript
 
-getNoticiaR :: NoticiaId -> Handler Html
-getNoticiaR nid = do
-             noticia <- runDB $ get404 nid 
-             listaI <- runDB $ selectList [ImagemIdnoticia ==. nid ] []
-             defaultLayout $ widgetCss >> 
-                 $(whamletFile "templates/menu.hamlet") >> 
-                 $(whamletFile "hamlet/noticia.hamlet") >> 
-                 $(whamletFile "templates/footer.hamlet") >> 
-                 widgetScript
-
-
 -- FUNCAO PARA GERAR FORMULARIOS DE UMA MANEIRA GENERICA
 widgetForm :: Route Sitio -> Enctype -> Widget -> Text -> Widget
 widgetForm x enctype widget y = $(whamletFile "templates/form.hamlet")
@@ -124,6 +114,7 @@ getCadastroNoticiaR = do
              defaultLayout $ widgetCss >> 
                  $(whamletFile "templates/menulogado.hamlet") >> 
                  $(whamletFile "templates/footer.hamlet") >> 
+                 widgetScript >> 
                  widgetForm CadastroNoticiaR enctype widget "Noticia"
                  
 
@@ -145,6 +136,7 @@ getCadastroImagemR = do
              defaultLayout $ widgetCss >> 
                  $(whamletFile "templates/menulogado.hamlet") >> 
                  $(whamletFile "templates/footer.hamlet") >> 
+                 widgetScript >> 
                  widgetForm CadastroImagemR enctype widget "Imagem"
                  
 
@@ -164,6 +156,7 @@ getCadastroUsuarioR = do
              defaultLayout $ widgetCss >> 
                  $(whamletFile "templates/menulogado.hamlet") >> 
                  $(whamletFile "templates/footer.hamlet") >> 
+                 widgetScript >> 
                  widgetForm CadastroUsuarioR enctype widget "Usuário"
                  
 
@@ -176,3 +169,85 @@ postCadastroUsuarioR = do
                        setMessage $ [shamlet| <p class="text-center"> Usuario inserida com sucesso |]
                        redirect CadastroUsuarioR
                     _ -> redirect CadastroUsuarioR
+                    
+
+getListaNoticiasR :: Handler Html
+getListaNoticiasR = do
+             listaN <- runDB $ selectList [] [Asc NoticiaId]
+             defaultLayout $ widgetCss >> 
+                 $(whamletFile "templates/menulogado.hamlet") >> 
+                 $(whamletFile "templates/footer.hamlet") >> 
+                 widgetScript >> 
+                 [whamlet|
+                 <h1> Noticias cadastradas:
+                 $forall Entity nid noticia <- listaN
+                     <a href=@{NoticiaR nid}> #{noticiaTitulo noticia} 
+                     <form method=post action=@{NoticiaR nid}> 
+                         <input type="submit" value="Deletar"><br>
+             |] >> toWidget [lucius|
+                form  { display:inline; }
+                input { background-color: #ecc; border:0;}
+             |]
+
+getNoticiaR :: NoticiaId -> Handler Html
+getNoticiaR nid = do
+             noticia <- runDB $ get404 nid 
+             listaI <- runDB $ selectList [ImagemIdnoticia ==. nid ] []
+             defaultLayout $ widgetCss >> 
+                 $(whamletFile "templates/menu.hamlet") >> 
+                 $(whamletFile "hamlet/noticia.hamlet") >> 
+                 $(whamletFile "templates/footer.hamlet") >> 
+                 widgetScript
+
+postNoticiaR :: NoticiaId -> Handler Html
+postNoticiaR nid = do
+     runDB $ delete nid
+     redirect ListaNoticiasR
+     
+     
+
+getListaImagensR :: Handler Html
+getListaImagensR = do
+             listaI <- runDB $ selectList [] [Asc ImagemId]
+             defaultLayout $ widgetCss >> 
+                 $(whamletFile "templates/menulogado.hamlet") >> 
+                 $(whamletFile "templates/footer.hamlet") >> 
+                 widgetScript >> 
+                 [whamlet|
+                 <h1> Imagens cadastradas:
+                 $forall Entity iid imagem <- listaI
+                     <img src=#{imagemUrl imagem}> 
+                     <form method=post action=@{ImagemR iid}> 
+                         <input type="submit" value="Deletar"><br>
+             |] >> toWidget [lucius|
+                form  { display:inline; }
+                input { background-color: #ecc; border:0;}
+             |]
+
+postImagemR :: ImagemId -> Handler Html
+postImagemR iid = do
+     runDB $ delete iid
+     redirect ListaImagensR
+     
+getListaUsuariosR :: Handler Html
+getListaUsuariosR = do
+             listaU <- runDB $ selectList [] [Asc UsuarioId]
+             defaultLayout $ widgetCss >> 
+                 $(whamletFile "templates/menulogado.hamlet") >> 
+                 $(whamletFile "templates/footer.hamlet") >> 
+                 widgetScript >> 
+                 [whamlet|
+                 <h1> Usuarios cadastradas:
+                 $forall Entity uid usuario <- listaU
+                     #{usuarioNome usuario} 
+                     <form method=post action=@{UsuarioR uid}> 
+                         <input type="submit" value="Deletar"><br>
+             |] >> toWidget [lucius|
+                form  { display:inline; }
+                input { background-color: #ecc; border:0;}
+             |]
+
+postUsuarioR :: UsuarioId -> Handler Html
+postUsuarioR uid = do
+     runDB $ delete uid
+     redirect ListaUsuariosR
