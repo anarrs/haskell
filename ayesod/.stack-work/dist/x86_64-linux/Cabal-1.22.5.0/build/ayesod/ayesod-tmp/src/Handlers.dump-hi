@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-06-05 19:20:10.028201 UTC
+2016-06-05 19:36:15.079428 UTC
 
 interface main@main:Handlers [orphan module] 7103
-  interface hash: 58d95ae1c61303a7767b5cf573e91026
-  ABI hash: 107f6e0e05a12d0fab51c4346d9ffe6d
+  interface hash: 80ba9f01683b886c68ccd635308bd5ab
+  ABI hash: 17b407e64eaa29273cc5e222d79d2643
   export-list hash: abd40b7e73c2c7b6dc9427c9d36cf7fc
   orphan hash: bbf56a32463e6c4d1d038b16a38c1d03
   flag hash: 002b4a2b1e8bd7f74f446f3277c2cd0a
@@ -11797,7 +11797,7 @@ c88e2ac3f1ee32f4fa08d38a1992b13f
   {- Unfolding: (Text.Blaze.Internal.Content
                    @ ()
                    Handlers.postCadastroImagemR7) -}
-29f9d05845f13957784da64bd5ebb1af
+105d9df4171baeef642468235bf2ebc5
   postCadastroNoticiaR :: Foundation.Handler Text.Blaze.Html.Html
   {- Arity: 2, Strictness: <L,U><L,U>,
      Unfolding: InlineRule (0, True, True)
@@ -11811,7 +11811,7 @@ c88e2ac3f1ee32f4fa08d38a1992b13f
                                <Foundation.Sitio>_N
                                <GHC.Types.IO>_N
                                <Text.Blaze.Html.Html>_N))) -}
-fd1ae2b2993bb6988a6502ed2af76232
+db1ae4aa4f21fdbb9d083344348f9710
   postCadastroNoticiaR1 ::
     Yesod.Core.Types.HandlerData
       Foundation.Sitio (Yesod.Core.Types.MonadRoute GHC.Types.IO)
@@ -11821,7 +11821,7 @@ fd1ae2b2993bb6988a6502ed2af76232
      Unfolding: (\ r :: Yesod.Core.Types.HandlerData
                           Foundation.Sitio (Yesod.Core.Types.MonadRoute GHC.Types.IO)
                    s :: GHC.Prim.State# GHC.Prim.RealWorld[OneShot] ->
-                 case (Handlers.postCadastroNoticiaR12
+                 case (Handlers.postCadastroNoticiaR8
                          `cast`
                        (Yesod.Core.Types.NTCo:HandlerT[0]
                             <Foundation.Sitio>_N
@@ -11840,7 +11840,7 @@ fd1ae2b2993bb6988a6502ed2af76232
                  case ds of wild1 { (,) result ds3 ->
                  case result of wild2 {
                    DEFAULT
-                   -> (Handlers.postCadastroNoticiaR11
+                   -> (Handlers.postCadastroNoticiaR7
                          `cast`
                        (Yesod.Core.Types.NTCo:HandlerT[0]
                             <Foundation.Sitio>_N <GHC.Types.IO>_N <Text.Blaze.Html.Html>_N)
@@ -11868,19 +11868,44 @@ fd1ae2b2993bb6988a6502ed2af76232
                                 @ (Yesod.Core.Types.HandlerT Foundation.Sitio GHC.Types.IO)
                                 @ (Database.Persist.Class.PersistEntity.Key Foundation.Noticia)
                                 Foundation.$fYesodPersistSitio_$s$fMonadBaseControlbHandlerT
-                                (Handlers.postCadastroNoticiaR10 noticia))
+                                (Handlers.postCadastroNoticiaR6 noticia))
                              r
                              ipv2 of ds5 { (#,#) ipv4 ipv5 ->
-                      (Handlers.postCadastroNoticiaR2
+                      case (Handlers.postCadastroNoticiaR_m1
+                              `cast`
+                            (Yesod.Core.Types.NTCo:HandlerT[0]
+                                 <Foundation.Sitio>_N <GHC.Types.IO>_N <()>_N)
+                              r)
+                             `cast`
+                           (GHC.Types.NTCo:IO[0] <()>_R)
+                             ipv4 of ds6 { (#,#) ipv6 ipv7 ->
+                      (Handlers.postCadastroNoticiaR7
                          `cast`
                        (Yesod.Core.Types.NTCo:HandlerT[0]
                             <Foundation.Sitio>_N <GHC.Types.IO>_N <Text.Blaze.Html.Html>_N)
                          r)
                         `cast`
                       (GHC.Types.NTCo:IO[0] <Text.Blaze.Html.Html>_R)
-                        ipv4 } } } } } }) -}
-8046d7684c5956535672e975617db6b3
-  postCadastroNoticiaR10 ::
+                        ipv6 } } } } } } }) -}
+55d1443469ed4513747c225169424f90
+  postCadastroNoticiaR2 :: Text.Blaze.Internal.MarkupM ()
+  {- Unfolding: (Text.Blaze.Internal.Content
+                   @ ()
+                   Handlers.postCadastroNoticiaR3) -}
+b2df007e6167288bebb78f68f1a59524
+  postCadastroNoticiaR3 :: Text.Blaze.Internal.ChoiceString
+  {- Unfolding: (Text.Blaze.Internal.PreEscaped
+                   Handlers.postCadastroNoticiaR4) -}
+7753e21458849ab9430c31be1df64bb1
+  postCadastroNoticiaR4 :: Text.Blaze.Internal.ChoiceString
+  {- Unfolding: (Text.Blaze.Internal.Text
+                   Handlers.postCadastroNoticiaR5) -}
+d0ad4feae1b4a3db5cca3d6cfc2ddb50
+  postCadastroNoticiaR5 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString#
+                   "<p class=\"text-center\"> Noticia inserida com sucesso </p>\n"#) -}
+03c0211ae88e29a266405e8e44e33000
+  postCadastroNoticiaR6 ::
     Foundation.Noticia
     -> Control.Monad.Trans.Reader.ReaderT
          Database.Persist.Sql.Types.SqlBackend
@@ -11891,8 +11916,8 @@ fd1ae2b2993bb6988a6502ed2af76232
                    @ (Yesod.Core.Types.HandlerT Foundation.Sitio GHC.Types.IO)
                    Foundation.$fYesodPersistSitio_$s$fMonadIOHandlerT
                    Foundation.$fPersistEntityNoticia) -}
-bb0dac74267ea95bf352f1fdbdcf9ffa
-  postCadastroNoticiaR11 ::
+242016ac57cbdf72a6c41cbb779fcab5
+  postCadastroNoticiaR7 ::
     Yesod.Core.Types.HandlerT
       Foundation.Sitio GHC.Types.IO Text.Blaze.Html.Html
   {- Unfolding: (Yesod.Core.Handler.redirect
@@ -11910,8 +11935,8 @@ bb0dac74267ea95bf352f1fdbdcf9ffa
                    Foundation.CadastroNoticiaR
                      `cast`
                    (Sub (Sym (Foundation.TFCo:R:RouteSitio[0])))) -}
-0b16dee1c430e65148eaf095ce644ffc
-  postCadastroNoticiaR12 ::
+70ecb6e1f293dcd8ffd784b49cfaba17
+  postCadastroNoticiaR8 ::
     Yesod.Core.Types.HandlerT
       Foundation.Sitio
       GHC.Types.IO
@@ -11945,120 +11970,14 @@ bb0dac74267ea95bf352f1fdbdcf9ffa
                                                  <Foundation.Sitio>_N <GHC.Types.IO>_N))
                                        <GHC.Types.IO>_N
                                        <()>_N)_N))_N))) -}
-04de57f7fb7e7bfd934b7a3db17095cd
-  postCadastroNoticiaR2 ::
-    Yesod.Core.Types.HandlerT
-      Foundation.Sitio GHC.Types.IO Text.Blaze.Html.Html
-  {- Unfolding: (Foundation.$fYesodSitio_$cdefaultLayout
-                   Handlers.postCadastroNoticiaR3
-                     `cast`
-                   (Trans
-                        (<Yesod.Core.Types.HandlerData
-                            Foundation.Sitio (Yesod.Core.Types.MonadRoute GHC.Types.IO)>_R
-                         ->_R Sym (GHC.Types.NTCo:IO[0]
-                                       ((<()>_R,
-                                         (Yesod.Core.Types.GWData
-                                            (Yesod.Routes.Class.Route
-                                               (Sym (Yesod.Core.Class.Handler.TFCo:R:HandlerSiteWidgetT[0]
-                                                         <Foundation.Sitio>_N
-                                                         <GHC.Types.IO>_N)))_R)_R))_R))
-                        (Sym (Yesod.Core.Types.NTCo:WidgetT[0]
-                                  <Foundation.Sitio>_N <GHC.Types.IO>_N <()>_N)))) -}
-9de9a5eef25a6b2a5e1d2b2d354a34af
-  postCadastroNoticiaR3 ::
-    Yesod.Core.Types.HandlerData
-      Foundation.Sitio (Yesod.Core.Types.MonadRoute GHC.Types.IO)
-    -> GHC.Prim.State# GHC.Prim.RealWorld
-    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
-          ((),
-           Yesod.Core.Types.GWData
-             (Yesod.Routes.Class.Route
-                (Yesod.Core.Class.Handler.HandlerSite
-                   (Yesod.Core.Types.WidgetT Foundation.Sitio GHC.Types.IO)))) #)
-  {- Arity: 2,
-     Unfolding: (\ eta1 :: Yesod.Core.Types.HandlerData
-                             Foundation.Sitio (Yesod.Core.Types.MonadRoute GHC.Types.IO)
-                   eta :: GHC.Prim.State# GHC.Prim.RealWorld[OneShot] ->
-                 (# eta, Handlers.postCadastroNoticiaR4 #)) -}
-18de49e809b4ab773faf950a2ac7610c
-  postCadastroNoticiaR4 ::
-    ((),
-     Yesod.Core.Types.GWData
-       (Yesod.Routes.Class.Route
-          (Yesod.Core.Class.Handler.HandlerSite
-             (Yesod.Core.Types.WidgetT Foundation.Sitio GHC.Types.IO))))
-  {- Unfolding: ((GHC.Tuple.(),
-                  Handlers.postCadastroNoticiaR5
-                    `cast`
-                  (Yesod.Core.Types.GWData
-                     (Yesod.Routes.Class.Route
-                        (Sym (Yesod.Core.Class.Handler.TFCo:R:HandlerSiteWidgetT[0]
-                                  <Foundation.Sitio>_N <GHC.Types.IO>_N)))_R)_R)) -}
-097c009ec89d23a9290e7b584384d97d
-  postCadastroNoticiaR5 ::
-    Yesod.Core.Types.GWData (Yesod.Routes.Class.Route Foundation.Sitio)
-  {- Unfolding: (Yesod.Core.Types.GWData
-                   @ (Yesod.Routes.Class.Route Foundation.Sitio)
-                   Handlers.postCadastroNoticiaR6
-                     `cast`
-                   (Sym (Yesod.Core.Types.NTCo:Body[0]
-                             <Yesod.Routes.Class.Route Foundation.Sitio>_R))
-                   (GHC.Base.Nothing @ Yesod.Core.Types.Title)
-                     `cast`
-                   (Sym (Data.Monoid.NTCo:Last[0]) <Yesod.Core.Types.Title>_N)
-                   (GHC.Base.id
-                      @ [Yesod.Core.Types.Script
-                           (Yesod.Routes.Class.Route Foundation.Sitio)])
-                     `cast`
-                   (Sym (Yesod.Core.Types.NTCo:UniqueList[0]
-                             <Yesod.Core.Types.Script
-                                (Yesod.Routes.Class.Route Foundation.Sitio)>_R))
-                   (GHC.Base.id
-                      @ [Yesod.Core.Types.Stylesheet
-                           (Yesod.Routes.Class.Route Foundation.Sitio)])
-                     `cast`
-                   (Sym (Yesod.Core.Types.NTCo:UniqueList[0]
-                             <Yesod.Core.Types.Stylesheet
-                                (Yesod.Routes.Class.Route Foundation.Sitio)>_R))
-                   (Data.Map.Base.Tip
-                      @ (GHC.Base.Maybe Data.Text.Internal.Text)
-                      @ ((Yesod.Routes.Class.Route Foundation.Sitio
-                          -> [(Data.Text.Internal.Text, Data.Text.Internal.Text)]
-                          -> Data.Text.Internal.Text)
-                         -> Data.Text.Internal.Builder.Builder))
-                   (GHC.Base.Nothing
-                      @ ((Yesod.Routes.Class.Route Foundation.Sitio
-                          -> [(Data.Text.Internal.Text, Data.Text.Internal.Text)]
-                          -> Data.Text.Internal.Text)
-                         -> Text.Julius.Javascript))
-                   (Yesod.Core.Types.$fApplicativeWidgetT2
-                      @ (Yesod.Routes.Class.Route Foundation.Sitio))
-                     `cast`
-                   (Sym (Yesod.Core.Types.NTCo:Head[0]
-                             <Yesod.Routes.Class.Route Foundation.Sitio>_R))) -}
-ab7e5a5c8a8c132a6f206f1782c7b723
-  postCadastroNoticiaR6 ::
-    Yesod.Core.Types.RY Foundation.Sitio -> Text.Blaze.Html.Html
-  {- Arity: 1,
-     Unfolding: (\ ds :: Yesod.Core.Types.RY Foundation.Sitio ->
-                 Handlers.postCadastroNoticiaR_x) -}
-20e001016ab1d9713b4ea8b90d720344
-  postCadastroNoticiaR7 :: Text.Blaze.Internal.ChoiceString
-  {- Unfolding: (Text.Blaze.Internal.PreEscaped
-                   Handlers.postCadastroNoticiaR8) -}
-15780534e210d4309ba4b576c50dcb4d
-  postCadastroNoticiaR8 :: Text.Blaze.Internal.ChoiceString
-  {- Unfolding: (Text.Blaze.Internal.Text
-                   Handlers.postCadastroNoticiaR9) -}
-171bf4829fbf6ba168c5be8573c2ff9e
-  postCadastroNoticiaR9 :: Data.Text.Internal.Text
-  {- Unfolding: (Data.Text.Show.unpackCString#
-                   "<h1>Noticia inserida com sucesso. </h1>\n"#) -}
-9a5536df1386df37306825e0f80b1548
-  postCadastroNoticiaR_x :: Text.Blaze.Html.Html
-  {- Unfolding: (Text.Blaze.Internal.Content
-                   @ ()
-                   Handlers.postCadastroNoticiaR7) -}
+ad05f0210bee360a822db47b5c028368
+  postCadastroNoticiaR_m1 ::
+    Yesod.Core.Types.HandlerT Foundation.Sitio GHC.Types.IO ()
+  {- Unfolding: (Yesod.Core.Handler.addMessage
+                   @ (Yesod.Core.Types.HandlerT Foundation.Sitio GHC.Types.IO)
+                   Foundation.$fYesodPersistSitio_$s$fMonadHandlerHandlerT
+                   Data.Text.Internal.empty_
+                   Handlers.postCadastroNoticiaR2) -}
 ea14fcacd443703a320d1261720918cc
   postCadastroUsuarioR :: Foundation.Handler Text.Blaze.Html.Html
   {- Arity: 2, Strictness: <L,U><L,U>,
@@ -12321,7 +12240,7 @@ f1fb2ec2e1903b8353e14843eb1efb92
   {- Unfolding: (Text.Blaze.Internal.Content
                    @ ()
                    Handlers.postCadastroUsuarioR7) -}
-6aa1117441e4bd9c0232800703035178
+9a0e92a594c80816697564dc1d7796d9
   postLoginR :: Foundation.Handler Text.Blaze.Html.Html
   {- Arity: 2, Strictness: <L,U><L,U>,
      Unfolding: InlineRule (0, True, True)
@@ -12335,7 +12254,7 @@ f1fb2ec2e1903b8353e14843eb1efb92
                                <Foundation.Sitio>_N
                                <GHC.Types.IO>_N
                                <Text.Blaze.Html.Html>_N))) -}
-2441cd384e0bb4f87737ef7270ceefa9
+fe811eb01d68e1c5ed7786d8cfcf4512
   postLoginR1 ::
     Yesod.Core.Types.HandlerData
       Foundation.Sitio (Yesod.Core.Types.MonadRoute GHC.Types.IO)
@@ -12472,7 +12391,7 @@ f1fb2ec2e1903b8353e14843eb1efb92
                                   `cast`
                                 (GHC.Types.NTCo:IO[0] <()>_R)
                                   ipv4 of ds7 { (#,#) ipv6 ipv7 ->
-                           (Handlers.postCadastroNoticiaR11
+                           (Handlers.postCadastroNoticiaR7
                               `cast`
                             (Yesod.Core.Types.NTCo:HandlerT[0]
                                  <Foundation.Sitio>_N <GHC.Types.IO>_N <Text.Blaze.Html.Html>_N)

@@ -133,9 +133,8 @@ postCadastroNoticiaR = do
                 case result of
                     FormSuccess noticia -> do
                        runDB $ insert noticia 
-                       defaultLayout [whamlet| 
-                           <h1>Noticia inserida com sucesso. 
-                       |]
+                       setMessage $ [shamlet| <p class="text-center"> Noticia inserida com sucesso |]
+                       redirect CadastroNoticiaR
                     _ -> redirect CadastroNoticiaR
 
 
