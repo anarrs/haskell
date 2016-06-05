@@ -154,9 +154,8 @@ postCadastroImagemR = do
                 case result of
                     FormSuccess imagem -> do
                        runDB $ insert imagem 
-                       defaultLayout [whamlet| 
-                           <h1>Imagem inserida com sucesso. 
-                       |]
+                       setMessage $ [shamlet| <p class="text-center"> Imagem inserida com sucesso |]
+                       redirect CadastroImagemR
                     _ -> redirect CadastroImagemR
 
 getCadastroUsuarioR :: Handler Html
@@ -174,7 +173,6 @@ postCadastroUsuarioR = do
                 case result of
                     FormSuccess usuario -> do
                        runDB $ insert usuario 
-                       defaultLayout [whamlet| 
-                           <h1>Usuario inserido com sucesso. 
-                       |]
+                       setMessage $ [shamlet| <p class="text-center"> Usuario inserida com sucesso |]
+                       redirect CadastroUsuarioR
                     _ -> redirect CadastroUsuarioR
