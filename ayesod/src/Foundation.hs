@@ -23,7 +23,7 @@ Noticia
    titulo Text sqltype=varchar(200)
    corpo Textarea
    autor Text sqltype=varchar(100)
-   cd_tipo_materia Int
+   idtipo TipoId default=1
    deriving Show
     
 Imagem
@@ -31,6 +31,10 @@ Imagem
    legenda Text
    autor Text sqltype=varchar(100)
    idnoticia NoticiaId
+   deriving Show
+
+Tipo
+   nome Text
    deriving Show
 
 |]
@@ -51,7 +55,6 @@ instance YesodPersist Sitio where
 instance Yesod Sitio where
     authRoute _ = Just $ LoginR
     isAuthorized LoginR _ = return Authorized
-    isAuthorized CadastroUsuarioR _ = isUser
     isAuthorized CadastroNoticiaR _ = isUser
     isAuthorized CadastroImagemR _ = isUser
     isAuthorized _ _ = return Authorized

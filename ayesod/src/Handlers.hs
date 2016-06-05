@@ -32,7 +32,14 @@ formCadastroNoticia = renderDivs $ Noticia <$>
                       areq textField "Titulo" Nothing <*>
                       areq textareaField "Corpo" Nothing <*>
                       areq textField "Autor" Nothing <*>
-                      areq intField "Tipo" Nothing
+                      areq (selectField tips) "Tipo" Nothing
+tips = do
+       entidades <- runDB $ selectList [] [Asc TipoNome] 
+       optionsPairs $ fmap (\ent -> (tipoNome $ entityVal ent, entityKey ent)) entidades
+
+formCadastroTipo :: Form Tipo
+formCadastroTipo = renderDivs $ Tipo <$>
+                   areq textField "Nome" Nothing
 
 formCadastroImagem :: Form Imagem
 formCadastroImagem = renderDivs $ Imagem <$>
@@ -127,6 +134,26 @@ postCadastroNoticiaR = do
                        setMessage $ [shamlet| <p class="text-center"> Noticia inserida com sucesso |]
                        redirect CadastroNoticiaR
                     _ -> redirect CadastroNoticiaR
+
+getCadastroTipoR :: Handler Html
+getCadastroTipoR = do
+             (widget, enctype) <- generateFormPost formCadastroTipo
+             defaultLayout $ widgetCss >> 
+                 $(whamletFile "templates/menulogado.hamlet") >> 
+                 $(whamletFile "templates/footer.hamlet") >> 
+                 widgetScript >> 
+                 widgetForm CadastroTipoR enctype widget "Tipo"
+                 
+
+postCadastroTipoR :: Handler Html
+postCadastroTipoR = do
+                ((result, _), _) <- runFormPost formCadastroTipo
+                case result of
+                    FormSuccess tipo -> do
+                       runDB $ insert tipo 
+                       setMessage $ [shamlet| <p class="text-center"> Tipo inserido com sucesso |]
+                       redirect CadastroTipoR
+                    _ -> redirect CadastroTipoR
 
 
 

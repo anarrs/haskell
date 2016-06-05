@@ -20,6 +20,7 @@ pRoutes = [parseRoutes|
    /noticia/#NoticiaId NoticiaR GET POST
    /imagem/#ImagemId ImagemR POST
    /usuario/#UsuarioId UsuarioR POST
+   /cadastrotipo CadastroTipoR GET POST
    /cadastronoticia CadastroNoticiaR GET POST
    /cadastroimagem CadastroImagemR GET POST
    /cadastrousuario CadastroUsuarioR GET POST
