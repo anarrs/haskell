@@ -13,21 +13,15 @@ import Database.Persist.Postgresql
 data Sitio = Sitio {getStatic :: Static, connPool :: ConnectionPool }
 
 share [mkPersist sqlSettings, mkMigrate "migrateAll"] [persistLowerCase|
-Departamento
-   nome Text
-   sigla Text sqltype=varchar(3)
-   deriving Show
-
-Pessoa
-   nome Text
-   idade Int
-   salario Double
-   deptoid DepartamentoId
-   deriving Show
-   
+Usuario
+    nome Text
+    UniqueUsuario nome
+    senha Text
+    deriving Show
+    
 Noticia
    titulo Text sqltype=varchar(200)
-   corpo Text
+   corpo Textarea
    autor Text sqltype=varchar(100)
    cd_tipo_materia Int
    deriving Show
@@ -48,6 +42,17 @@ instance YesodPersist Sitio where
        runSqlPool f pool
 
 instance Yesod Sitio where
+    authRoute _ = Just $ LoginR
+    isAuthorized LoginR _ = return Authorized
+    isAuthorized CadastroUsuarioR _ = isUser
+    isAuthorized CadastroNoticiaR _ = isUser
+    isAuthorized _ _ = return Authorized
+
+isUser = do
+    mu <- lookupSession "_ID"
+    return $ case mu of
+        Nothing -> AuthenticationRequired
+        Just _ -> Authorized
 
 type Form a = Html -> MForm Handler (FormResult a, Widget)
 

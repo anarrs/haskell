@@ -15,16 +15,6 @@ import Database.Persist.Postgresql
 mkYesodDispatch "Sitio" pRoutes
 
 
-widgetCss2 :: Widget
-widgetCss2 = do
-    addStylesheetRemote "http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800"
-    addStylesheetRemote "http://fonts.googleapis.com/css?family=Arvo"
-    addStylesheet $ StaticR css_colors_green_css
-    addStylesheet $ StaticR css_style_css
-    addStylesheet $ StaticR css_base_css
-    addStylesheet $ StaticR css_responsive_css
-    addStylesheet $ StaticR css_font_awesome_css
-
 widgetCss :: Widget
 widgetCss = do
     addStylesheet $ StaticR css_bootstrap_css
@@ -37,32 +27,47 @@ widgetScript = do
     addScript $ StaticR js_bootstrap_min_js
     addScript $ StaticR js_validator_min_js
 
-formDepto :: Form Departamento
-formDepto = renderDivs $ Departamento <$>
-            areq textField "Nome" Nothing <*>
-            areq textField FieldSettings{fsId=Just "hident2",
-                           fsLabel="Sigla",
-                           fsTooltip= Nothing,
-                           fsName= Nothing,
-                           fsAttrs=[("maxlength","3")]} Nothing
-
-formPessoa :: Form Pessoa
-formPessoa = renderDivs $ Pessoa <$>
-             areq textField "Nome" Nothing <*>
-             areq intField "Idade" Nothing <*>
-             areq doubleField "Salario" Nothing <*>
-             areq (selectField dptos) "Depto" Nothing
-
 formCadastroNoticia :: Form Noticia
 formCadastroNoticia = renderDivs $ Noticia <$>
                       areq textField "Titulo" Nothing <*>
-                      areq textField "Corpo" Nothing <*>
+                      areq textareaField "Corpo" Nothing <*>
                       areq textField "Autor" Nothing <*>
                       areq intField "Tipo" Nothing
 
-dptos = do
-       entidades <- runDB $ selectList [] [Asc DepartamentoNome] 
-       optionsPairs $ fmap (\ent -> (departamentoSigla $ entityVal ent, entityKey ent)) entidades
+formUsuario :: Form Usuario
+formUsuario = renderDivs $ Usuario <$>
+             areq textField "Nome" Nothing <*>
+             areq passwordField "Senha" Nothing
+
+
+getLogoutR :: Handler Html
+getLogoutR = do
+    deleteSession "_ID"
+    redirect HomeR
+
+getLoginR :: Handler Html
+getLoginR = do
+    (widget, enctype) <- generateFormPost formUsuario
+    defaultLayout $ widgetCss >> 
+     $(whamletFile "templates/menu.hamlet") >> 
+     $(whamletFile "templates/footer.hamlet") >> 
+     widgetLogin LoginR enctype widget "Usuarios"
+
+postLoginR :: Handler Html
+postLoginR = do
+    ((result,_),_) <- runFormPost formUsuario
+    case result of
+        FormSuccess usr -> do
+            usuario <- runDB $ selectFirst [UsuarioNome ==. usuarioNome usr, UsuarioSenha ==. usuarioSenha usr ] []
+            case usuario of
+                Just (Entity uid usr) -> do
+                    setSession "_ID" (usuarioNome usr)
+                    redirect HomeR
+                Nothing -> do
+                    setMessage $ [shamlet| <p class="text-center"> Usuário inválido |]
+                    redirect LoginR
+        _ -> redirect LoginR
+
 
 getHomeR :: Handler Html
 getHomeR = do
@@ -83,20 +88,6 @@ getNoticiasR = do
                    $(whamletFile "templates/footer.hamlet") >> 
                    widgetScript
 
-getListarR :: Handler Html
-getListarR = do
-             listaP <- runDB $ selectList [] [Asc PessoaNome]
-             defaultLayout $ [whamlet|
-                 <h1> Pessoas cadastradas:
-                 $forall Entity pid pessoa <- listaP
-                     <a href=@{PessoaR pid}> #{pessoaNome pessoa} 
-                     <form method=post action=@{PessoaR pid}> 
-                         <input type="submit" value="Deletar">aaaa<br>
-             |] >> toWidget [lucius|
-                form  { display:inline; }
-                input { background-color: #ecc; border:0;}
-             |]
-
 getNoticiaR :: NoticiaId -> Handler Html
 getNoticiaR nid = do
              noticia <- runDB $ get404 nid 
@@ -106,61 +97,23 @@ getNoticiaR nid = do
                  $(whamletFile "templates/footer.hamlet") >> 
                  widgetScript
 
-{-
-getHomeR = do
-           defaultLayout $ do  
-                 addStylesheet $ StaticR css_style_css
-                 [whamlet| 
-                 <h1>123
-                 |]
-
-     
-getHomeR = do
-           defaultLayout $
-                toWidget $(luciusFile "templates/css.lucius") >>
-                $(whamletFile "templates/home.hamlet")
--}
 
 -- FUNCAO PARA GERAR FORMULARIOS DE UMA MANEIRA GENERICA
 widgetForm :: Route Sitio -> Enctype -> Widget -> Text -> Widget
 widgetForm x enctype widget y = $(whamletFile "templates/form.hamlet")
 
-getCadastroR :: Handler Html
-getCadastroR = do
-             (widget, enctype) <- generateFormPost formPessoa
-             defaultLayout $ do 
-                 addStylesheet $ StaticR teste_css
-                 widgetForm CadastroR enctype widget "Pessoas"
+-- FUNCAO PARA GERAR FORMULARIOS DE LOGIN
+widgetLogin :: Route Sitio -> Enctype -> Widget -> Text -> Widget
+widgetLogin x enctype widget y = $(whamletFile "templates/login.hamlet")
 
 getCadastroNoticiaR :: Handler Html
 getCadastroNoticiaR = do
              (widget, enctype) <- generateFormPost formCadastroNoticia
              defaultLayout $ widgetCss >> 
-                 $(whamletFile "templates/menu.hamlet") >> 
+                 $(whamletFile "templates/menulogado.hamlet") >> 
                  $(whamletFile "templates/footer.hamlet") >> 
                  widgetForm CadastroNoticiaR enctype widget "Noticia"
                  
-getPessoaR :: PessoaId -> Handler Html
-getPessoaR pid = do
-             pessoa <- runDB $ get404 pid 
-             dpto <- runDB $ get404 (pessoaDeptoid pessoa)
-             defaultLayout [whamlet| 
-                 <h1> Seja bem-vindx #{pessoaNome pessoa}
-                 <p> Salario: #{pessoaSalario pessoa}
-                 <p> Idade: #{pessoaIdade pessoa}
-                 <p> Departamento: #{departamentoNome dpto}
-             |]
-
-postCadastroR :: Handler Html
-postCadastroR = do
-                ((result, _), _) <- runFormPost formPessoa
-                case result of
-                    FormSuccess pessoa -> do
-                       runDB $ insert pessoa 
-                       defaultLayout [whamlet| 
-                           <h1> #{pessoaNome pessoa} Inseridx com sucesso. 
-                       |]
-                    _ -> redirect CadastroR
 
 postCadastroNoticiaR :: Handler Html
 postCadastroNoticiaR = do
@@ -173,23 +126,24 @@ postCadastroNoticiaR = do
                        |]
                     _ -> redirect CadastroNoticiaR
 
-getDeptoR :: Handler Html
-getDeptoR = do
-             (widget, enctype) <- generateFormPost formDepto
-             defaultLayout $ widgetForm DeptoR enctype widget "Departamentos"
 
-postDeptoR :: Handler Html
-postDeptoR = do
-                ((result, _), _) <- runFormPost formDepto
+
+getCadastroUsuarioR :: Handler Html
+getCadastroUsuarioR = do
+             (widget, enctype) <- generateFormPost formUsuario
+             defaultLayout $ widgetCss >> 
+                 $(whamletFile "templates/menulogado.hamlet") >> 
+                 $(whamletFile "templates/footer.hamlet") >> 
+                 widgetForm CadastroUsuarioR enctype widget "Usuário"
+                 
+
+postCadastroUsuarioR :: Handler Html
+postCadastroUsuarioR = do
+                ((result, _), _) <- runFormPost formUsuario
                 case result of
-                    FormSuccess depto -> do
-                       runDB $ insert depto
-                       defaultLayout [whamlet|
-                           <h1> #{departamentoNome depto} Inserido com sucesso. 
+                    FormSuccess usuario -> do
+                       runDB $ insert usuario 
+                       defaultLayout [whamlet| 
+                           <h1>Usuario inserido com sucesso. 
                        |]
-                    _ -> redirect DeptoR
-
-postPessoaR :: PessoaId -> Handler Html
-postPessoaR pid = do
-     runDB $ delete pid
-     redirect ListarR
+                    _ -> redirect CadastroUsuarioR

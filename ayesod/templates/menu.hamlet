@@ -40,6 +40,7 @@
                             <li><a href="https://metalurgicos-victorxmartins.c9.io/index.php/comunicacao/videos">Vídeos</a></li>
                     <li><a href="https://metalurgicos-victorxmartins.c9.io/index.php/pagina/sindicalizese">Sindicalize-se</a></li>
                     <li><a href="https://metalurgicos-victorxmartins.c9.io/index.php/pagina/contato">Contatos</a></li>
+                    <li><a href=@{LoginR}>Área restrita</a></li>
                     <li>
                         <form class="navbar-form navbar-right" role="search" method="post" action="https://metalurgicos-victorxmartins.c9.io/index.php/comunicacao/busca">
                             <input type="text" class="form-control" placeholder="Procuro por..." name="busca" id="busca">
