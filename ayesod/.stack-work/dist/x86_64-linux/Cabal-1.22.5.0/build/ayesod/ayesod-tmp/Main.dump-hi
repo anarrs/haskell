@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-06-06 02:06:21.671206 UTC
+2016-06-06 02:24:34.898924 UTC
 
 interface main@main:Main 7103
-  interface hash: 33087bbdb17b8ee30efd7df8162b5f19
-  ABI hash: 79c5eae617b67faa1790e2e72a24ccc4
-  export-list hash: e297e477966c441b34214ddafab13c4d
+  interface hash: 5a79141b260365be89df9a9f5c744ee9
+  ABI hash: c6fea041c9283a80046946c2979a0dca
+  export-list hash: 7c50eda816e13b77e93cc92e1444d15a
   orphan hash: 30255c9284799e76651a06a4b6cb6ed1
   flag hash: 478ee77c77866d4fc0cbb019f4c98d2d
   sig of: Nothing
@@ -222,8 +222,8 @@ import  -/  Foundation adb72842d93d823375c77a30c949549f
   exports: 1c0e8e6f05cfdb12790e50c908fa6ec5
   Sitio c9a43c982e71ca2e420a58aad04a9dbe
   migrateAll 4d33837e3d647f8b5c4f1fcd0a506ee2
-import  -/  Handlers 99d6d6174ddfbe392f91a8523c6787bf
-  exports: 50ba10443d0e39483b081255fa1fc805
+import  -/  Handlers f852d0968ec80b592dba745cef77e403
+  exports: 1cb3b299c00e226310d9475b7842bd6b
 import  -/  Import fe84e09d427222323497cb8d45e38bfe
   exports: 3f81b358abbdd755233af520aa5259f2
 import  -/  monad-logger-0.3.18@monad_4zFmsKEb02q80NkYIgzdSA:Control.Monad.Logger 182fd28eab575faa0f8bc2038857c61b
