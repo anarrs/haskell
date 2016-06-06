@@ -103,6 +103,11 @@ getHomeR = do
                $(whamletFile "templates/menu.hamlet") >> 
                $(whamletFile "hamlet/destaque.hamlet") >> 
                $(whamletFile "hamlet/noticias.hamlet") >> 
+               [whamlet| 
+               <div class="text-center">
+                   <a href=@{NoticiasR} class="btn btn-danger">
+                       + notícias 
+               |] >>
                $(whamletFile "templates/footer.hamlet") >> 
                widgetScript
 
