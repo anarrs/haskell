@@ -57,7 +57,13 @@ instance Yesod Sitio where
     isAuthorized LoginR _ = return Authorized
     isAuthorized CadastroNoticiaR _ = isUser
     isAuthorized CadastroImagemR _ = isUser
+    isAuthorized CadastroTipoR _ = isUser
+    isAuthorized CadastroUsuarioR _ = isUser
+    isAuthorized ListaNoticiasR _ = isUser
+    isAuthorized ListaImagensR _ = isUser
+    isAuthorized ListaUsuariosR _ = isUser
     isAuthorized _ _ = return Authorized
+    
 
 isUser = do
     mu <- lookupSession "_ID"

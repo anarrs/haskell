@@ -87,13 +87,22 @@ postLoginR = do
                     redirect LoginR
         _ -> redirect LoginR
 
+--fTipo :: Int -> Tipo
+--fTipo x = ttipo <- runDB $ selectFirst [TipoId ==. x]
 
 getHomeR :: Handler Html
 getHomeR = do
+          -- let ttipo = map entityKey
+         --  ttipo <- runDB $ selectFirst [TipoId ==. 2] []
+           --ttipo <- runDB $ get404 2
+        --   listaN <- runDB $ selectList [NoticiaIdtipo ==. entityKey ttipo] [Desc NoticiaId, LimitTo 8]
+           listaN <- runDB $ selectList [] [Desc NoticiaId, LimitTo 8]
+          -- listaN <- runDB $ rawSql 
+        --     "SELECT * FROM noticia INNER JOIN tipo ON noticia.idtipo=tipo.id"
            defaultLayout $ widgetCss >> 
                $(whamletFile "templates/menu.hamlet") >> 
                $(whamletFile "hamlet/destaque.hamlet") >> 
-               $(whamletFile "hamlet/noticias_boletim.hamlet") >> 
+               $(whamletFile "hamlet/noticias.hamlet") >> 
                $(whamletFile "templates/footer.hamlet") >> 
                widgetScript
 
