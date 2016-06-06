@@ -1,8 +1,8 @@
 <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="col-md-2">
-                <a class="navbar-brand" href="https://metalurgicos-victorxmartins.c9.io/index.php/pagina/">
-                    <img alt="Logo do sindicato" src="https://metalurgicos-victorxmartins.c9.io/static/img/logo-metal.png" class="img-responsive">
+                <a class="navbar-brand" href=@{HomeR}>
+                    <img alt="Logo do sindicato" src=@{StaticR images_logo_metal_png} class="img-responsive">
             <div class="navbar-header col-md-10">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" title="Menu">
                     <span class="sr-only">Menu</span>
